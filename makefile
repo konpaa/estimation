@@ -13,5 +13,8 @@ down:
 migrate:
 	./artisan migrate
 
+fresh:
+	./artisan migrate:fresh --seed
+
 test:
 	./artisan test

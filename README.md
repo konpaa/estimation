@@ -10,21 +10,25 @@ cd estimation
 ```
 cp .env.example .env
 ```
-**Generate application key**
-```
-php artisan key:generate
-```
 **Install packages**
 ```
 composer install
+```
+**Generate application key**
+```
+php artisan key:generate
 ```
 **Up docker containers**
 ```
 docker-compose up -d
 ```
+**Exec bash to container app**
+```
+make bash
+```
 **Migrate schema and seed to docker db**
 ```
-php artisan migrate --seed
+make fresh
 ```
 **Test application**
 ```
