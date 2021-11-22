@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\UsesUuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,6 +33,10 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use HasFactory;
+    use UsesUuid;
+
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_USER = 'user';
 
     /**
      * The attributes that are mass assignable.
@@ -42,6 +47,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -61,6 +67,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    protected $attributes = [
+        'role' => self::ROLE_USER,
     ];
 
     public function setPasswordAttribute($value)
