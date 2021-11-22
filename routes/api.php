@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,6 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::middleware('roles:admin')->group(function () {
-
+        Route::resource('admin/users', AdminUserController::class)->names('admin.users');
     });
 });

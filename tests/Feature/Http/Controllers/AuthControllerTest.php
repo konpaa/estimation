@@ -24,7 +24,7 @@ class AuthControllerTest extends ControllerTestCase
             'password_confirmation' => $password
         ])->assertCreated();
 
-        $this->assertDatabaseCount('users', 2);
+        $this->assertDatabaseCount('users', 3);
     }
 
 //    public function testNegativeRegisterUser()

@@ -44,8 +44,7 @@ class AuthController extends Controller
     #[ArrayShape(['message' => "string"])]
     public function logout(): array
     {
-        $user = request()->user();
-        $user->tokens()->where('id', auth()->id())->delete();
+        auth()->user()->tokens()->delete();
 
         return [
             'message' => 'Token Revoked'
