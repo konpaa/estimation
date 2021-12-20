@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Price;
+use App\Models\Product;
 use App\Models\User;
 use DB;
 use Illuminate\Database\Seeder;
@@ -33,5 +35,20 @@ class DemoSeeder extends Seeder
         // 1|rKX9XP062XiO6DVylQ2p97QELAXJIcHsZoy3toF0
         DB::table('personal_access_tokens')
             ->update(['token' => 'bca4f59d22bd5554585474921a523ecdd74fe8169bdac75fe5d001eb2e2917d3']);
+
+
+        $product = Product::create([
+            'user_id' => $user->id,
+            'id' => '3bcd41a4-0ab3-4225-848a-b2ab629263ec',
+            'name' => 'book',
+            'description' => 'The saga focuses on Geralt of Rivia and Ciri,
+            who are linked by destiny. Ciri, princess of a recently conquered country
+            and a pawn of international politics, becomes a witcher-in-training.
+            Geralt is drawn into a whirlwind of events in his attempts to protect her.'
+        ])->price()->create([
+            'id' => '702d6cde-d1b7-4318-b439-ec01f2338f66',
+            'currency' => 'BYN',
+            'value' => 30.5
+        ]);
     }
 }

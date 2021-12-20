@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2fa3bf08-2a56-4147-b9d3-fc3896f8c4ca",
+		"_postman_id": "478ddbf6-5b55-4de1-a592-6e3adadec188",
 		"name": "Estimation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -8,6 +8,182 @@
 		{
 			"name": "Auth",
 			"item": [
+				{
+					"name": "User / Product",
+					"item": [
+						{
+							"name": "Index",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/api/user/products",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"book\",\n    \"description\" : \"present\",\n    \"currency\" : \"BYN\",\n    \"value\" : 30\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/user/products",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/api/user/products/{{TEST_PRODUCT_ID}}",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"products",
+										"{{TEST_PRODUCT_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"book\",\n    \"description\" : \"The saga focuses on Geralt of Rivia and Ciri, who are linked by destiny. Ciri, princess of a recently conquered country and a pawn of international politics, becomes a witcher-in-training. Geralt is drawn into a whirlwindof events in his attempts to protect her.\",\n    \"currency\" : \"EUR\",\n    \"value\" : 5\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/user/products/{{TEST_PRODUCT_ID}}",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"products",
+										"{{TEST_PRODUCT_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Destroy",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/api/user/products/{{TEST_PRODUCT_ID}}",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"products",
+										"{{TEST_PRODUCT_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "Logout",
 					"request": {
@@ -419,6 +595,14 @@
 		{
 			"key": "TEST_USER_ID",
 			"value": "943adcba-f5ba-452b-80ef-fe4cbfa97bf2"
+		},
+		{
+			"key": "TEST_PRODUCT_ID",
+			"value": "3bcd41a4-0ab3-4225-848a-b2ab629263ec"
+		},
+		{
+			"key": "TEST_PRICE_ID",
+			"value": "702d6cde-d1b7-4318-b439-ec01f2338f66"
 		}
 	]
 }

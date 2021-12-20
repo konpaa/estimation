@@ -2,12 +2,16 @@
 
 namespace Tests;
 
+use App\Models\Price;
+use App\Models\Product;
 use App\Models\User;
 
 abstract class ControllerTestCase extends TestCase
 {
     protected User $user;
     protected User $admin;
+    protected Product $product;
+    protected Price $price;
 
     protected function setUp(): void
     {
@@ -21,8 +25,12 @@ abstract class ControllerTestCase extends TestCase
             'password' => 'qwerty',
             'role' => 'admin'
         ]);
+        $product = Product::factory()->create();
+        $price = Price::factory()->create();
 
         $this->admin = $admin;
         $this->user = $user;
+        $this->product = $product;
+        $this->price = $price;
     }
 }

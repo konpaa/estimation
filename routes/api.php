@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 
@@ -23,10 +24,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::middleware('roles:user')->group(function () {
-
+        Route::apiResource('user/products', ProductController::class)->names('user.products');
     });
 
     Route::middleware('roles:admin')->group(function () {
-        Route::resource('admin/users', AdminUserController::class)->names('admin.users');
+        Route::apiResource('admin/users', AdminUserController::class)->names('admin.users');
     });
 });

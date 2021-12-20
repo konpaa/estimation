@@ -18,3 +18,9 @@ fresh:
 
 test:
 	./artisan test
+
+facade:
+	php artisan ide-helper:generate
+
+model:
+	php artisan ide-helper:models "App\Models\Product" "App\Models\User" "App\Models\Price"
