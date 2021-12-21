@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\UsesUuid;
 use Database\Factories\UserFactory;
 use Eloquent;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -53,7 +53,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property-read Collection|\App\Models\Product[] $products
  * @property-read int|null $products_count
  */
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
@@ -107,5 +107,10 @@ class User extends Authenticatable
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->role == self::ROLE_ADMIN;
     }
 }

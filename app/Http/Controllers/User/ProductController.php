@@ -13,31 +13,25 @@ class ProductController extends Controller
     public function index()
     {
         return ProductResource::collection(
-            auth()->user()->products()->with('price')->paginate()
+            auth()->user()->products()->paginate()
         );
     }
 
     public function store(StoreRequest $request)
     {
         $product = $request->user()->products()->create($request->validated());
-        $product->price()->create($request->validated());
-        $product->load('price');
 
         return new ProductResource($product);
     }
 
     public function show(Product $product)
     {
-        $product->load('price');
-
         return new ProductResource($product);
     }
 
     public function update(UpdateRequest $request, Product $product)
     {
         $product->update($request->validated());
-        $product->price()->update($request->except(['name', 'description']));
-        $product->load('price');
 
         return new ProductResource($product);
     }

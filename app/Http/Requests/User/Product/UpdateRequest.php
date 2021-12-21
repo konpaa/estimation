@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -11,8 +12,8 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'string',
             'description' => 'string',
-            'currency' => 'in:BYN,USD,EUR',
-            'value' => 'numeric|regex:/^\d+(\.\d{1,2})?$/'
+            'price_currency' => Rule::in(config('products.supported_currencies')),
+            'price' => 'numeric|regex:/^\d+(\.\d{1,2})?$/'
         ];
     }
 

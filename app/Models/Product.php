@@ -41,15 +41,15 @@ class Product extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['name', 'description', 'user_id'];
+    protected $fillable = ['name', 'description', 'user_id', 'price_currency', 'price'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function price()
+    public function getPriceAttribute()
     {
-        return $this->hasOne(Price::class);
+        return new Price($this->attributes['price'], $this->price_currency ?? 'USD');
     }
 }

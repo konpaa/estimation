@@ -44,11 +44,9 @@ class DemoSeeder extends Seeder
             'description' => 'The saga focuses on Geralt of Rivia and Ciri,
             who are linked by destiny. Ciri, princess of a recently conquered country
             and a pawn of international politics, becomes a witcher-in-training.
-            Geralt is drawn into a whirlwind of events in his attempts to protect her.'
-        ])->price()->create([
-            'id' => '702d6cde-d1b7-4318-b439-ec01f2338f66',
-            'currency' => 'BYN',
-            'value' => 30.5
+            Geralt is drawn into a whirlwind of events in his attempts to protect her.',
+            'price' => 30,
+            'price_currency' => 'USD'
         ]);
     }
 }

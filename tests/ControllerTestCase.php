@@ -26,11 +26,9 @@ abstract class ControllerTestCase extends TestCase
             'role' => 'admin'
         ]);
         $product = Product::factory()->create();
-        $price = Price::factory()->create();
 
         $this->admin = $admin;
         $this->user = $user;
         $this->product = $product;
-        $this->price = $price;
     }
 }

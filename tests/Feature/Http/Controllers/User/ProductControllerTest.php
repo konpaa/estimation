@@ -18,8 +18,8 @@ class ProductControllerTest extends ControllerTestCase
         $response = $this->post(route('user.products.store'), [
             'name' => $this->faker->name,
             'description' => $this->faker->text,
-            'currency' => 'BYN',
-            'value' => 50
+            'price_currency' => 'BYN',
+            'price' => 50
         ]);
 
         $response->assertCreated();
@@ -34,8 +34,8 @@ class ProductControllerTest extends ControllerTestCase
         $response = $this->post(route('user.products.store'), [
             'name' => $this->faker->name,
             'description' => $this->faker->text,
-            'currency' => 'BYN',
-            'value' => 50
+            'price_currency' => 'BYN',
+            'price' => 50
         ]);
         $response->assertForbidden();
     }
