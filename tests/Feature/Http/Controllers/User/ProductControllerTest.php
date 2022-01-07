@@ -15,7 +15,7 @@ class ProductControllerTest extends ControllerTestCase
 
     public function testStore()
     {
-        $response = $this->post(route('user.products.store'), [
+        $response = $this->post(route('users.products.store'), [
             'name' => $this->faker->name,
             'description' => $this->faker->text,
             'price_currency' => 'BYN',
@@ -31,7 +31,7 @@ class ProductControllerTest extends ControllerTestCase
         $this->post(route('logout', $this->user));
         $this->actingAs($this->admin);
 
-        $response = $this->post(route('user.products.store'), [
+        $response = $this->post(route('users.products.store'), [
             'name' => $this->faker->name,
             'description' => $this->faker->text,
             'price_currency' => 'BYN',
@@ -42,14 +42,14 @@ class ProductControllerTest extends ControllerTestCase
 
     public function testIndex()
     {
-        $response = $this->get(route('user.products.index'));
+        $response = $this->get(route('users.products.index'));
 
         $response->assertJsonStructure(['data', 'links']);
     }
 
     public function testShow()
     {
-        $response = $this->get(route('user.products.show', $this->product));
+        $response = $this->get(route('users.products.show', $this->product));
 
         $response->assertOk();
         $response->assertJsonStructure(['data' => ['name', 'description']]);
@@ -57,7 +57,7 @@ class ProductControllerTest extends ControllerTestCase
 
     public function testUpdate()
     {
-        $response = $this->put(route('user.products.update', $this->product), [
+        $response = $this->put(route('users.products.update', $this->product), [
             'name' => 'test'
         ]);
 
@@ -67,7 +67,7 @@ class ProductControllerTest extends ControllerTestCase
 
     public function testDestroy()
     {
-        $response = $this->delete(route('user.products.destroy', $this->product));
+        $response = $this->delete(route('users.products.destroy', $this->product));
         $response->assertOk();
 
         $response->assertJsonStructure(['status']);

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "478ddbf6-5b55-4de1-a592-6e3adadec188",
+		"_postman_id": "1f2ab933-34ff-4d48-845b-4a28df8dcc3e",
 		"name": "Estimation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -28,13 +28,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/api/user/products",
+									"raw": "{{API_URL}}/api/users/products",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"api",
-										"user",
+										"users",
 										"products"
 									]
 								}
@@ -67,13 +67,13 @@
 									"raw": "{\n    \"name\" : \"book\",\n    \"description\" : \"present\",\n    \"currency\" : \"BYN\",\n    \"value\" : 30\n}"
 								},
 								"url": {
-									"raw": "{{API_URL}}/api/user/products",
+									"raw": "{{API_URL}}/api/users/products",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"api",
-										"user",
+										"users",
 										"products"
 									]
 								}
@@ -97,13 +97,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/api/user/products/{{TEST_PRODUCT_ID}}",
+									"raw": "{{API_URL}}/api/users/products/{{TEST_PRODUCT_ID}}",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"api",
-										"user",
+										"users",
 										"products",
 										"{{TEST_PRODUCT_ID}}"
 									]
@@ -137,13 +137,13 @@
 									"raw": "{\n    \"name\" : \"book\",\n    \"description\" : \"The saga focuses on Geralt of Rivia and Ciri, who are linked by destiny. Ciri, princess of a recently conquered country and a pawn of international politics, becomes a witcher-in-training. Geralt is drawn into a whirlwindof events in his attempts to protect her.\",\n    \"currency\" : \"EUR\",\n    \"value\" : 5\n}"
 								},
 								"url": {
-									"raw": "{{API_URL}}/api/user/products/{{TEST_PRODUCT_ID}}",
+									"raw": "{{API_URL}}/api/users/products/{{TEST_PRODUCT_ID}}",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"api",
-										"user",
+										"users",
 										"products",
 										"{{TEST_PRODUCT_ID}}"
 									]
@@ -168,13 +168,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/api/user/products/{{TEST_PRODUCT_ID}}",
+									"raw": "{{API_URL}}/api/users/products/{{TEST_PRODUCT_ID}}",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"api",
-										"user",
+										"users",
 										"products",
 										"{{TEST_PRODUCT_ID}}"
 									]
@@ -517,6 +517,182 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Index",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/products",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"users",
+										"{{TEST_USER_ID}}",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"food\",\n    \"description\" : \"milk\",\n    \"price_currency\" : \"BYN\",\n    \"price\" : 2\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/products",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"users",
+										"{{TEST_USER_ID}}",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/products/{{TEST_PRODUCT_ID}}",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"users",
+										"{{TEST_USER_ID}}",
+										"products",
+										"{{TEST_PRODUCT_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"book\",\n    \"description\" : \"Harry Potter 4\",\n    \"price_currency\" : \"BYN\",\n    \"price\" : 26\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/products/{{TEST_PRODUCT_ID}}",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"users",
+										"{{TEST_USER_ID}}",
+										"products",
+										"{{TEST_PRODUCT_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/products/{{TEST_PRODUCT_ID}}",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"users",
+										"{{TEST_USER_ID}}",
+										"products",
+										"{{TEST_PRODUCT_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			],
 			"auth": {
@@ -590,7 +766,7 @@
 		},
 		{
 			"key": "TEST_TOKEN",
-			"value": "1|rKX9XP062XiO6DVylQ2p97QELAXJIcHsZoy3toF0"
+			"value": "2|1nig5yTDoSS9dUntlYipm9ULdLGoj2qL5wPXO8iL"
 		},
 		{
 			"key": "TEST_USER_ID",

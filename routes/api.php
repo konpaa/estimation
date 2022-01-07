@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::middleware('roles:user')->group(function () {
-        Route::apiResource('user/products', ProductController::class)->names('user.products');
+        Route::apiResource('users/products', ProductController::class)->names('users.products');
     });
 
     Route::middleware('roles:admin')->group(function () {
         Route::apiResource('admin/users', AdminUserController::class)->names('admin.users');
+        Route::apiResource('admin/users/{user}/products', AdminProductController::class)->names('admin.products');
     });
 });

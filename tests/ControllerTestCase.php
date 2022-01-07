@@ -26,6 +26,7 @@ abstract class ControllerTestCase extends TestCase
             'role' => 'admin'
         ]);
         $product = Product::factory()->create();
+        $user->products()->create($product->toArray());
 
         $this->admin = $admin;
         $this->user = $user;

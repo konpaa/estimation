@@ -5,7 +5,7 @@ stop:
 	docker-compose stop
 
 bash:
-	docker-compose exec laravel.test bash
+	docker-compose exec app bash
 
 down:
 	docker-compose down -v
@@ -23,4 +23,4 @@ facade:
 	php artisan ide-helper:generate
 
 model:
-	php artisan ide-helper:models "App\Models\Product" "App\Models\User" "App\Models\Price"
+	php artisan ide-helper:models "App\Models\Product" "App\Models\User"

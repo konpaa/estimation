@@ -30,6 +30,10 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Product whereName($value)
  * @method static Builder|Product whereUpdatedAt($value)
  * @method static Builder|Product whereUserId($value)
+ * @property string|null $price_currency
+ * @method static \Database\Factories\ProductFactory factory(...$parameters)
+ * @method static Builder|Product wherePrice($value)
+ * @method static Builder|Product wherePriceCurrency($value)
  */
 class Product extends Model
 {
