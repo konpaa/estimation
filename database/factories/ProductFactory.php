@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Price;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -25,6 +25,10 @@ class ProductFactory extends Factory
             'user_id' => function () {
                 return User::factory()->create()->id;
             },
+
+            'category_id' => function () {
+                return Category::factory()->create()->id;
+            }
         ];
     }
 }

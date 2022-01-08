@@ -34,6 +34,9 @@ use Illuminate\Support\Carbon;
  * @method static \Database\Factories\ProductFactory factory(...$parameters)
  * @method static Builder|Product wherePrice($value)
  * @method static Builder|Product wherePriceCurrency($value)
+ * @property string $category_id
+ * @property-read \App\Models\Category $category
+ * @method static Builder|Product whereCategoryId($value)
  */
 class Product extends Model
 {
@@ -45,7 +48,7 @@ class Product extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['name', 'description', 'user_id', 'price_currency', 'price'];
+    protected $fillable = ['name', 'description', 'user_id', 'price_currency', 'price', 'category_id'];
 
     public function user()
     {
@@ -55,5 +58,10 @@ class Product extends Model
     public function getPriceAttribute()
     {
         return new Price($this->attributes['price'], $this->price_currency ?? 'USD');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Product;
 
+use App\DataTransferObject\ProductDto;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -13,7 +14,19 @@ class StoreRequest extends FormRequest
             'name' => 'required|string',
             'description' => 'required|string',
             'price_currency' => 'required|' . Rule::in(config('products.supported_currencies')),
-            'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/'
+            'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
         ];
+    }
+
+    public function getDto(): ProductDto
+    {
+        return new ProductDto(
+            $this->get('name'),
+            $this->get('description'),
+            $this->route('user'),
+            $this->get('price_currency'),
+            $this->get('price'),
+            $this->route('category')
+        );
     }
 }

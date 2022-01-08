@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Price;
 use App\Models\Product;
 use App\Models\User;
@@ -36,8 +37,11 @@ class DemoSeeder extends Seeder
         DB::table('personal_access_tokens')
             ->update(['token' => 'bca4f59d22bd5554585474921a523ecdd74fe8169bdac75fe5d001eb2e2917d3']);
 
-
-        $product = Product::create([
+        $category = Category::create([
+            'name' => 'other',
+            'description' => 'other',
+            'id' => '68b3bc9e-9f14-4dae-87b7-2293a8a11bfb'
+        ])->products()->create([
             'user_id' => $user->id,
             'id' => '3bcd41a4-0ab3-4225-848a-b2ab629263ec',
             'name' => 'book',

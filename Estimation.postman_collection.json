@@ -64,16 +64,18 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\" : \"book\",\n    \"description\" : \"present\",\n    \"currency\" : \"BYN\",\n    \"value\" : 30\n}"
+									"raw": "{\n    \"name\" : \"book\",\n    \"description\" : \"present\",\n    \"price_currency\" : \"BYN\",\n    \"price\" : 30\n}"
 								},
 								"url": {
-									"raw": "{{API_URL}}/api/users/products",
+									"raw": "{{API_URL}}/api/users/categories/{{TEST_CATEGORY_ID}}/products",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"api",
 										"users",
+										"categories",
+										"{{TEST_CATEGORY_ID}}",
 										"products"
 									]
 								}
@@ -134,16 +136,18 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\" : \"book\",\n    \"description\" : \"The saga focuses on Geralt of Rivia and Ciri, who are linked by destiny. Ciri, princess of a recently conquered country and a pawn of international politics, becomes a witcher-in-training. Geralt is drawn into a whirlwindof events in his attempts to protect her.\",\n    \"currency\" : \"EUR\",\n    \"value\" : 5\n}"
+									"raw": "{\n    \"description\" : \"The saga focuses on Geralt of Rivia and Ciri, who are linked by destiny. Ciri, princess of a recently conquered country and a pawn of international politics, becomes a witcher-in-training. Geralt is drawn into a whirlwindof events in his attempts to protect her.\",\n    \"price_currency\" : \"EUR\",\n    \"price\" : 5\n}"
 								},
 								"url": {
-									"raw": "{{API_URL}}/api/users/products/{{TEST_PRODUCT_ID}}",
+									"raw": "{{API_URL}}/api/users/categories/{{TEST_CATEGORY_ID}}/products/{{TEST_PRODUCT_ID}}",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"api",
 										"users",
+										"categories",
+										"{{TEST_CATEGORY_ID}}",
 										"products",
 										"{{TEST_PRODUCT_ID}}"
 									]
@@ -543,7 +547,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/products",
+									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/categories/{{TEST_CATEGORY_ID}}/products",
 									"host": [
 										"{{API_URL}}"
 									],
@@ -552,6 +556,8 @@
 										"admin",
 										"users",
 										"{{TEST_USER_ID}}",
+										"categories",
+										"{{TEST_CATEGORY_ID}}",
 										"products"
 									]
 								}
@@ -584,7 +590,7 @@
 									"raw": "{\n    \"name\" : \"food\",\n    \"description\" : \"milk\",\n    \"price_currency\" : \"BYN\",\n    \"price\" : 2\n}"
 								},
 								"url": {
-									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/products",
+									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/categories/{{TEST_CATEGORY_ID}}/products",
 									"host": [
 										"{{API_URL}}"
 									],
@@ -593,6 +599,8 @@
 										"admin",
 										"users",
 										"{{TEST_USER_ID}}",
+										"categories",
+										"{{TEST_CATEGORY_ID}}",
 										"products"
 									]
 								}
@@ -611,7 +619,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/products/{{TEST_PRODUCT_ID}}",
+									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/categories/{{TEST_CATEGORY_ID}}/products/{{TEST_PRODUCT_ID}}",
 									"host": [
 										"{{API_URL}}"
 									],
@@ -620,6 +628,8 @@
 										"admin",
 										"users",
 										"{{TEST_USER_ID}}",
+										"categories",
+										"{{TEST_CATEGORY_ID}}",
 										"products",
 										"{{TEST_PRODUCT_ID}}"
 									]
@@ -648,7 +658,7 @@
 									"raw": "{\n    \"name\" : \"book\",\n    \"description\" : \"Harry Potter 4\",\n    \"price_currency\" : \"BYN\",\n    \"price\" : 26\n}"
 								},
 								"url": {
-									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/products/{{TEST_PRODUCT_ID}}",
+									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/categories/{{TEST_CATEGORY_ID}}/products/{{TEST_PRODUCT_ID}}",
 									"host": [
 										"{{API_URL}}"
 									],
@@ -657,6 +667,8 @@
 										"admin",
 										"users",
 										"{{TEST_USER_ID}}",
+										"categories",
+										"{{TEST_CATEGORY_ID}}",
 										"products",
 										"{{TEST_PRODUCT_ID}}"
 									]
@@ -676,7 +688,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/products/{{TEST_PRODUCT_ID}}",
+									"raw": "{{API_URL}}/api/admin/users/{{TEST_USER_ID}}/categories/{{TEST_CATEGORY_ID}}/products/{{TEST_PRODUCT_ID}}",
 									"host": [
 										"{{API_URL}}"
 									],
@@ -685,8 +697,166 @@
 										"admin",
 										"users",
 										"{{TEST_USER_ID}}",
+										"categories",
+										"{{TEST_CATEGORY_ID}}",
 										"products",
 										"{{TEST_PRODUCT_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/api/admin/categories/{{TEST_CATEGORY_ID}}",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"categories",
+										"{{TEST_CATEGORY_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"home\",\n    \"description\": \"for home\"\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/admin/categories",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Index",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/api/admin/categories",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"HCS\",\n    \"description\" : \"housing and communal services.\"\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/admin/categories/{{TEST_CATEGORY_ID}}",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"categories",
+										"{{TEST_CATEGORY_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/api/admin/categories/{{TEST_CATEGORY_ID}}",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"categories",
+										"{{TEST_CATEGORY_ID}}"
 									]
 								}
 							},
@@ -766,7 +936,7 @@
 		},
 		{
 			"key": "TEST_TOKEN",
-			"value": "2|1nig5yTDoSS9dUntlYipm9ULdLGoj2qL5wPXO8iL"
+			"value": "1|rKX9XP062XiO6DVylQ2p97QELAXJIcHsZoy3toF0"
 		},
 		{
 			"key": "TEST_USER_ID",
@@ -779,6 +949,11 @@
 		{
 			"key": "TEST_PRICE_ID",
 			"value": "702d6cde-d1b7-4318-b439-ec01f2338f66"
+		},
+		{
+			"key": "TEST_CATEGORY_ID",
+			"value": "68b3bc9e-9f14-4dae-87b7-2293a8a11bfb",
+			"type": "string"
 		}
 	]
 }

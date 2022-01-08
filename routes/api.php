@@ -5,6 +5,7 @@ use App\Http\Controllers\User\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +25,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::middleware('roles:user')->group(function () {
-        Route::apiResource('users/products', ProductController::class)->names('users.products');
+    Route::middleware('roles:user')->as('users.')->prefix('users')->group(function () {
+        Route::apiResource('categories/{category}/products', ProductController::class);
     });
 
-    Route::middleware('roles:admin')->group(function () {
-        Route::apiResource('admin/users', AdminUserController::class)->names('admin.users');
-        Route::apiResource('admin/users/{user}/products', AdminProductController::class)->names('admin.products');
+    Route::middleware('roles:admin')->as('admin.')->prefix('admin')->group(function () {
+        Route::apiResource('users', AdminUserController::class);
+        Route::apiResource('users/{user}/categories/{category}/products', AdminProductController::class);
+        Route::apiResource('categories', AdminCategoryController::class);
     });
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User\Product;
 
+use App\DataTransferObject\ProductDto;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -19,6 +20,18 @@ class UpdateRequest extends FormRequest
 
     protected function passesAuthorization()
     {
-        return auth()->user()->products->contains($this->route('product')->id);
+        return $this->user()->products->contains($this->route('product'));
+    }
+
+    public function getDto(): ProductDto
+    {
+        return new ProductDto(
+            $this->get('name'),
+            $this->get('description'),
+            $this->user()->id,
+            $this->get('price_currency'),
+            $this->get('price'),
+            $this->route('category')
+        );
     }
 }

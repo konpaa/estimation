@@ -15,7 +15,7 @@ class ProductControllerTest extends ControllerTestCase
 
     public function testStore()
     {
-        $response = $this->post(route('users.products.store'), [
+        $response = $this->post(route('users.products.store', $this->product->category), [
             'name' => $this->faker->name,
             'description' => $this->faker->text,
             'price_currency' => 'BYN',
@@ -31,7 +31,7 @@ class ProductControllerTest extends ControllerTestCase
         $this->post(route('logout', $this->user));
         $this->actingAs($this->admin);
 
-        $response = $this->post(route('users.products.store'), [
+        $response = $this->post(route('users.products.store', $this->product->category), [
             'name' => $this->faker->name,
             'description' => $this->faker->text,
             'price_currency' => 'BYN',
@@ -42,14 +42,20 @@ class ProductControllerTest extends ControllerTestCase
 
     public function testIndex()
     {
-        $response = $this->get(route('users.products.index'));
+        $response = $this->get(route('users.products.index', [
+            'user' => $this->product->user,
+            'category' => $this->product->category
+        ]));
 
         $response->assertJsonStructure(['data', 'links']);
     }
 
     public function testShow()
     {
-        $response = $this->get(route('users.products.show', $this->product));
+        $response = $this->get(route(
+            'users.products.show',
+            ['product' => $this->product->id, 'category' => $this->product->category]
+        ));
 
         $response->assertOk();
         $response->assertJsonStructure(['data' => ['name', 'description']]);
@@ -57,7 +63,10 @@ class ProductControllerTest extends ControllerTestCase
 
     public function testUpdate()
     {
-        $response = $this->put(route('users.products.update', $this->product), [
+        $response = $this->put(route(
+            'users.products.update',
+            ['product' => $this->product, 'category' => $this->product->category]
+        ), [
             'name' => 'test'
         ]);
 
@@ -67,7 +76,10 @@ class ProductControllerTest extends ControllerTestCase
 
     public function testDestroy()
     {
-        $response = $this->delete(route('users.products.destroy', $this->product));
+        $response = $this->delete(route(
+            'users.products.destroy',
+            ['product' => $this->product, 'category' => $this->product->category]
+        ));
         $response->assertOk();
 
         $response->assertJsonStructure(['status']);
