@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\StatisticController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -27,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware('roles:user')->as('users.')->prefix('users')->group(function () {
         Route::apiResource('categories/{category}/products', ProductController::class);
+        Route::get('statistics', [StatisticController::class, 'index'])->name('statistics');
     });
 
     Route::middleware('roles:admin')->as('admin.')->prefix('admin')->group(function () {

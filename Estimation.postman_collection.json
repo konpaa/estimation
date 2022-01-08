@@ -212,6 +212,46 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/api/users/statistics?start_at=2022-01-07&end_at=2022-10-08",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"statistics"
+							],
+							"query": [
+								{
+									"key": "start_at",
+									"value": "2022-01-07"
+								},
+								{
+									"key": "end_at",
+									"value": "2022-10-08"
+								},
+								{
+									"key": "category_name",
+									"value": "HCS",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"auth": {

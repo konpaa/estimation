@@ -19,7 +19,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->text(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'price' => $this->faker->randomNumber(),
+            'price' => $this->faker->randomNumber(2),
             'price_currency' => 'BYN',
 
             'user_id' => function () {
