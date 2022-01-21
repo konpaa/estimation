@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\StatisticController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::middleware('roles:user')->as('users.')->prefix('users')->group(function () {
+        Route::apiResource('categories', CategoryController::class)->only('show', 'index');
         Route::apiResource('categories/{category}/products', ProductController::class);
         Route::get('statistics', [StatisticController::class, 'index'])->name('statistics');
     });
