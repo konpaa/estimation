@@ -23,7 +23,7 @@ class ProductRelationManager extends HasManyRelationManager
                 Forms\Components\TextInput::make('price')
                     ->numeric()->required(),
                 Forms\Components\Select::make('price_currency')
-                    ->options(config('products.supported_currencies'))
+                    ->options(config('currencies.supported_currencies'))
             ]);
     }
 
@@ -33,7 +33,7 @@ class ProductRelationManager extends HasManyRelationManager
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('description')->limit(50),
-                Tables\Columns\TextColumn::make('price_currency')->enum(config('products.supported_currencies')),
+                Tables\Columns\TextColumn::make('price_currency')->enum(config('currencies.supported_currencies')),
                 Tables\Columns\TextColumn::make('price')->sortable(),
             ])
             ->filters([

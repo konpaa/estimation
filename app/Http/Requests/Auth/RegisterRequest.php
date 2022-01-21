@@ -12,6 +12,7 @@ class RegisterRequest extends FormRequest
             'name' => 'required|string|min:2',
             'email' => 'required|string|email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
+            'main_currency' => 'string|in:' . implode(',', config('currencies.supported_currencies')),
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\DataTransferObject;
 
+use Illuminate\Support\Carbon;
+
 class ProductDto
 {
     private ?string $name;
@@ -16,6 +18,8 @@ class ProductDto
 
     private string $categoryId;
 
+    private Carbon $created_at;
+
     /**
      * @param string|null $name
      * @param string|null $description
@@ -23,6 +27,7 @@ class ProductDto
      * @param string|null $priceCurrency
      * @param float|null $price
      * @param string $categoryId
+     * @param string|null $created_at
      */
     public function __construct(
         ?string $name,
@@ -30,7 +35,8 @@ class ProductDto
         string $userId,
         ?string $priceCurrency,
         ?float $price,
-        string $categoryId
+        string $categoryId,
+        ?string $created_at
     ) {
         $this->name = $name;
         $this->description = $description;
@@ -38,6 +44,7 @@ class ProductDto
         $this->priceCurrency = $priceCurrency;
         $this->price = $price;
         $this->categoryId = $categoryId;
+        $this->created_at = $created_at ? Carbon::parse($created_at) : Carbon::now();
     }
 
     /**
@@ -86,5 +93,13 @@ class ProductDto
     public function getCategoryId(): string
     {
         return $this->categoryId;
+    }
+
+    /**
+     * @return Carbon
+     */
+    public function getCreatedAt(): Carbon
+    {
+        return $this->created_at;
     }
 }

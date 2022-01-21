@@ -21,7 +21,7 @@ class StatisticService
             $query = $this->nameFilter($query, $filters->getCategoryName());
         }
 
-        return $this->getResult($query->get());
+        return $this->getResult($query->get(), $filters->getCategoryName());
     }
 
     private function timeFilter(Builder $builder, string $start_at, string $end_at): Builder
@@ -34,9 +34,9 @@ class StatisticService
         return $builder->whereRelation('category', 'name', $category_name);
     }
 
-    private function getResult(Collection $collection): array
+    private function getResult(Collection $collection, $isCategoryName): array
     {
-        return $collection->reduce(function (array $acc, Product $product) {
+        return $collection->reduce(function (array $acc, Product $product) use ($isCategoryName) {
             $category = $product->category->name;
             $costProduct = $product->price->getValue();
 
@@ -48,9 +48,20 @@ class StatisticService
                 $acc[$category]['count_product'] = 1;
             }
 
-            $acc['total_cost']['value'] += $costProduct;
+            if ($isCategoryName) {
+                $acc[$category]['products'][] = [
+                    'name' => $product->name,
+                    'description' => $product->description,
+                    'price' => $product->price->getValue(),
+                    'price_currency' => $product->price->getCurrency()
+                ];
+            } else {
+                isset($acc['total_cost']['value']) ?
+                    $acc['total_cost']['value'] += $costProduct :
+                    $acc['total_cost']['value'] = $costProduct;
+            }
 
             return $acc;
-        }, ['total_cost' => ['value' => 0]]);
+        }, []);
     }
 }

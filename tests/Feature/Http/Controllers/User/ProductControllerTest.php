@@ -84,4 +84,18 @@ class ProductControllerTest extends ControllerTestCase
 
         $response->assertJsonStructure(['status']);
     }
+
+    public function testTime()
+    {
+        $response = $this->post(route('users.products.store', $this->product->category), [
+            'name' => $this->faker->name,
+            'description' => $this->faker->text,
+            'price_currency' => 'BYN',
+            'price' => 50,
+            'created_at' => '2022-10-05'
+        ]);
+
+        $response->assertCreated();
+        $this->assertDatabaseHas('products', ['created_at' => '2022-10-05']);
+    }
 }

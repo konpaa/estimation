@@ -5,7 +5,6 @@ namespace App\Services;
 use App\DataTransferObject\ProductDto;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Resources\MissingValue;
 
 class ProductService
 {
@@ -36,6 +35,7 @@ class ProductService
             'price_currency' => $productDto->getPriceCurrency(),
             'user_id' => $productDto->getUserId(),
             'category_id' => $productDto->getCategoryId(),
+            'created_at' => $productDto->getCreatedAt(),
         ];
 
         return array_filter($arrayProduct, fn($productOption) => $productOption != null);

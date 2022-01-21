@@ -31,7 +31,12 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('price')
                     ->numeric()->required(),
                 Forms\Components\Select::make('price_currency')
-                    ->options(config('products.supported_currencies'))
+                    ->options(config('currencies.supported_currencies'))
+                    ->required(),
+                Forms\Components\BelongsToSelect::make('category_id')
+                    ->relationship('category', 'name')
+                    ->required(),
+                Forms\Components\DateTimePicker::make('created_at')->default(now()),
 
             ]);
     }
@@ -40,16 +45,14 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('user.email'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('description')->limit(20),
-                Tables\Columns\TextColumn::make('price_currency')->enum(config('products.supported_currencies')),
+                Tables\Columns\TextColumn::make('price_currency')->enum(config('currencies.supported_currencies')),
                 Tables\Columns\TextColumn::make('price')->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('category.name'),
             ])
             ->filters([
                 //
@@ -59,7 +62,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\CategoriesRelationManager::class,
         ];
     }
 

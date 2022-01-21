@@ -21,6 +21,7 @@ class ProductController extends Controller
     public function store(StoreRequest $request, $categoryId, ProductService $productService)
     {
         $product = $productService->create($categoryId, $request->getDto());
+
         $product->load('category');
 
         return new ProductResource($product);

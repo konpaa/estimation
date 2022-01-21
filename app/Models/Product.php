@@ -48,7 +48,7 @@ class Product extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['name', 'description', 'user_id', 'price_currency', 'price', 'category_id'];
+    protected $fillable = ['name', 'description', 'user_id', 'price_currency', 'price', 'category_id', 'created_at'];
 
     public function user()
     {

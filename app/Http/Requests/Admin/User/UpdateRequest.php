@@ -12,6 +12,7 @@ class UpdateRequest extends FormRequest
             'name' => 'string',
             'email' => 'string|email|unique:users,email,' . $this->route('user')->id,
             'role' => 'string|in:user,admin',
+            'main_currency' => 'string|in:' . implode(',', config('currencies.supported_currencies')),
         ];
     }
 }

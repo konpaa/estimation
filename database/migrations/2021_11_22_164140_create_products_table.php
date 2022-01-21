@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
             $table->longText('description')->nullable();
             $table->timestamps();
             $table->unsignedDecimal('price', 20, 2);
-            $table->enum('price_currency', config('products.supported_currencies'));
+            $table->enum('price_currency', config('currencies.supported_currencies'));
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
         });
